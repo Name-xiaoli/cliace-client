@@ -3,9 +3,20 @@
 </template>
 
 <script >
+
 export default {
-  name: 'BlogIndex'
+  name: 'BlogIndex',
+  comments: {
+
+  },
+  methods: {
+  },
+  onload () {
+
+  }
 }
 </script>
 
-<style></style>
+<style scoped lang="scss">
+
+</style>
