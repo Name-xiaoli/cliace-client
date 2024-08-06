@@ -69,12 +69,21 @@ export default {
     // 登录
     async onSubmit () {
       // console.log(this.loginForm)
-      const res = await userLoginService(this.loginForm)
-      console.log(res)
-      if (res.data.code === 200) {
-        this.setUserInfo(res.data.data)
-        this.saveLoginNameToStorage()
-        this.$router.push('/')
+      try {
+        const res = await userLoginService(this.loginForm)
+        console.log(res)
+        if (res.data.code === 200) {
+          this.setUserInfo(res.data.data)
+          this.saveLoginNameToStorage()
+          this.$router.push('/')
+        }
+      } catch (error) {
+        if (error) {
+          this.$message({
+            message: '请输入正确的用户名和密码',
+            type: 'error'
+          })
+        }
       }
     },
     // 注册

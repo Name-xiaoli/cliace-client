@@ -19,3 +19,20 @@ export const userRegisterService = ({ username, pwd, email, captcha }) => {
     captcha: captcha
   })
 }
+
+// 修改个人信息
+export const changeUserInfoService = (id, data) => {
+  return instance.patch(`/users?id=${id}&login_name=${data.login_name}`, {
+    nickname: data.nickname,
+    age: Number(data.age),
+    sex: data.sex
+  })
+}
+
+// 修改账户密码
+
+export const changePwdService = (data) => {
+  return instance.patch(`/users/changePWD?login_name=${data.login_name}&passworsd=${data.passworsd}`, {
+    passworsd: data.newpassword
+  })
+}
