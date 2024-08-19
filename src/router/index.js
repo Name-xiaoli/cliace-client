@@ -6,6 +6,7 @@ import Blog from '@/views/layout/blog.vue'
 import Log from '@/views/layout/log.vue'
 import MyBlog from '@/views/layout/myBlog.vue'
 import MyLog from '@/views/layout/myLog.vue'
+import LookBlog from '@/views/blog/index.vue'
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,11 @@ const routes = [
       { path: '/my-blog', component: MyBlog },
       { path: '/my-log', component: MyLog }
     ]
+  },
+  {
+    path: '/lookblog',
+    component: LookBlog,
+    meta: { requiresAuth: true } // 需要身份验证的路由
   }
 ]
 

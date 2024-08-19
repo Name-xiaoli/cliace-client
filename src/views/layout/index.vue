@@ -128,7 +128,7 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          localStorage.removeItem('name')
+          localStorage.clear()
           window.location.reload()
           this.$message({
             type: 'success',
@@ -151,14 +151,28 @@ export default {
         .then(async _ => {
           if (this.isUserInfo === true) {
             this.loading = true
-            const res = await changeUserInfoService(this.id, this.userInfoForm)
-            console.log(res)
-
-            if (res.data.code === 200) {
-              this.userInfoForm.id = this.id
-              this.loading = false
-              this.setUserInfo(this.userInfoForm)
+            try {
+              const res = await changeUserInfoService(this.id, this.userInfoForm)
+              console.log(res)
+              if (res.data.code === 200) {
+                this.userInfoForm.id = this.id
+                this.loading = false
+                this.setUserInfo(this.userInfoForm)
+              } else {
+                this.loading = false
+              }
+            } catch (error) {
+              if (error) {
+                this.loading = false
+                this.$notify({
+                  title: '提示',
+                  message: '请正确填写相关信息',
+                  duration: 0
+                })
+                return
+              }
             }
+
             this.dialog = false
           } else {
             this.loading = true
