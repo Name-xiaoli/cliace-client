@@ -53,7 +53,7 @@
             {{i.text}}
           </div>
           <div style="padding: 0 10px; color: #333; text-align: end">
-            <span>{{i.user.nickname?i.user.nickname:i.user.login_name}}</span> / <span>{{i.updata_time}}</span>
+            <span>{{i.user.nickname?i.user.nickname:i.user.login_name}}</span> / <span>{{new Date(i.updata_time).toLocaleString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}}</span>
           </div>
         </div>
       </div>
